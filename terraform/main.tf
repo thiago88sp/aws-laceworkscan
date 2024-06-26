@@ -2,7 +2,6 @@ provider "aws" {
   region = var.aws_region
 }
 
-# main.tf
 resource "aws_vpc" "main" {
   cidr_block = "10.0.0.0/16"
 }
@@ -31,7 +30,6 @@ resource "aws_security_group" "main" {
   }
 }
 
-
 data "aws_ami" "ubuntu" {
   most_recent = true
 
@@ -48,13 +46,11 @@ data "aws_ami" "ubuntu" {
   owners = ["099720109477"] # Canonical
 }
 
-
 resource "aws_instance" "web" {
-  ami             = data.aws_ami.ubuntu.id
-  instance_type   = var.instance_type
-  key_name        = var.key_name
-  subnet_id       = aws_subnet.main.id
-  security_groups = [aws_security_group.main.name]
+  ami           = data.aws_ami.ubuntu.id
+  instance_type = var.instance_type
+  key_name      = var.key_name
+  subnet_id     = aws_subnet.main.id
 
   tags = {
     Name = "Terraform EC2 Instance"
