@@ -1,49 +1,44 @@
-provider "azurerm" {
-  features {}
+provider "aws" {
+  region = var.aws_region
 }
 
-terraform {
-  backend "azurerm" {
-    storage_account_name = "tspontes7xg2dfzesta001"
-    container_name       = "terraform"
-    key                  = "terraform.tfstate"
+# main.tf
+resource "aws_vpc" "main" {
+  cidr_block = "10.0.0.0/16"
+}
+
+resource "aws_subnet" "main" {
+  vpc_id            = aws_vpc.main.id
+  cidr_block        = "10.0.1.0/24"
+  availability_zone = "${var.aws_region}a"
+}
+
+resource "aws_security_group" "main" {
+  vpc_id = aws_vpc.main.id
+
+  ingress {
+    from_port   = 22
+    to_port     = 22
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
   }
 }
 
-resource "azurerm_resource_group" "rsg" {
-  name     = "tpontes-lacework"
-  location = "East US"
+resource "aws_instance" "web" {
+  ami           = var.ami_id
+  instance_type = var.instance_type
+  key_name      = var.key_name
+  subnet_id     = aws_subnet.main.id
+  security_groups = [aws_security_group.main.name]
 
   tags = {
-    Username = "tpontes"
-    Source   = "Terraform"
-    Purpose = "Lacework Test"
-  }
-}
-
-resource "azurerm_service_plan" "app_plan" {
-  name                = "tsp_lw_app_plan-001"
-  resource_group_name = azurerm_resource_group.rsg.name
-  location            = azurerm_resource_group.rsg.location
-  sku_name            = "B1"
-  os_type             = "Windows"
-
-  tags = {
-    Username = "tpontes"
-    Source   = "Terraform"
-  }
-}
-
-resource "azurerm_windows_web_app" "web_app" {
-  name                = "tsp-lw-web-app-0001"
-  resource_group_name = azurerm_resource_group.rsg.name
-  location            = azurerm_service_plan.app_plan.location
-  service_plan_id     = azurerm_service_plan.app_plan.id
-
-  site_config {}
-
-  tags = {
-    Username = "tpontes"
-    Source   = "Terraform"
+    Name = "Terraform EC2 Instance"
   }
 }

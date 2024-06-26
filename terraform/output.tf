@@ -1,7 +1,15 @@
-output "app_service_name" {
-  value = azurerm_windows_web_app.web_app.name
+# outputs.tf
+output "instance_id" {
+  description = "The ID of the EC2 instance"
+  value       = aws_instance.web.id
 }
 
-output "resource_group_name" {
-  value = azurerm_resource_group.rsg.name
+output "public_ip" {
+  description = "The public IP address of the EC2 instance"
+  value       = aws_instance.web.public_ip
+}
+
+output "subnet_id" {
+  description = "The subnet ID where the EC2 instance is deployed"
+  value       = aws_instance.web.subnet_id
 }
