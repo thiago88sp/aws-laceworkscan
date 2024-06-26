@@ -13,6 +13,7 @@ variable "instance_type" {
 variable "key_name" {
   description = "The name of the SSH key pair to use"
   type        = string
+  default     = "terraform/tsp.key"
 }
 
 variable "ami_id" {
