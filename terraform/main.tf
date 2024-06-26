@@ -2,6 +2,18 @@ provider "aws" {
   region = var.aws_region
 }
 
+provider "azurerm" {
+  features {}
+}
+
+terraform {
+  backend "azurerm" {
+    storage_account_name = "tspontes7xg2dfzesta001"
+    container_name       = "terraform"
+    key                  = "aws.tfstate"
+  }
+}
+
 resource "aws_vpc" "main" {
   cidr_block = "10.0.0.0/16"
 }
