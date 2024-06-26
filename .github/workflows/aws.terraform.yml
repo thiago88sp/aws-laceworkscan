@@ -70,7 +70,7 @@ jobs:
             -backend-config="storage_account_name=tspontes7xg2dfzesta001" \
             -backend-config="container_name=terraform" \
             -backend-config="key=aws.tfstate" \
-            -backend-config="sas_token=sv=2022-11-02&ss=bfqt&srt=sco&sp=rwdlacupiyx&se=2024-06-26T20:08:08Z&st=2024-06-26T12:08:08Z&spr=https,http&sig=DRxJpnzKAKp7snOS2rg5xdEa%2B3ieID1QqHzhXaDvbdU%3D"
+            -backend-config="sas_token=sv=2022-11-02&ss=bfqt&srt=sco&sp=rwdlacupiyx&se=2024-06-27T04:33:12Z&st=2024-06-26T20:33:12Z&spr=https,http&sig=kwi7G6WJ%2BErJyvu1%2Bqec3fXfzyszOcOEGlxCRJ9k6ns%3D"
 
       - name: Terraform Plan
         run: |
