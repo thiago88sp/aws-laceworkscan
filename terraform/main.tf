@@ -64,6 +64,9 @@ resource "aws_instance" "web" {
   
   subnet_id     = aws_subnet.main.id
 
+  // Public IP
+  associate_public_ip_address = true
+
   tags = {
     Name     = "EC2 Instance"
     Username = "tpontes"
