@@ -65,6 +65,9 @@ resource "aws_instance" "web" {
   subnet_id     = aws_subnet.main.id
 
   tags = {
-    Name = "Terraform EC2 Instance"
+    Name     = "EC2 Instance"
+    Username = "tpontes"
+    Source   = "Terraform"
+    Purpose  = "Lacework Test"
   }
 }
