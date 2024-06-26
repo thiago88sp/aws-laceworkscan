@@ -15,9 +15,3 @@ variable "key_name" {
   type        = string
   default     = "terraform/tsp.key"
 }
-
-variable "ami_id" {
-  description = "The AMI ID to use for the instance"
-  type        = string
-  default     = "ami-0c55b159cbfafe1f0" # Amazon Linux 2 AMI ID for us-east-1
-}

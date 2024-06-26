@@ -43,6 +43,11 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
+      - name: Setup Azure CLI
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v1
         with:
@@ -56,7 +61,7 @@ jobs:
           terraform init \
             -backend-config="storage_account_name=tspontes7xg2dfzesta001" \
             -backend-config="container_name=terraform" \
-            -backend-config="key=terraform.tfstate" \
+            -backend-config="key=aws.tfstate" \
             -backend-config="sas_token=sv=2022-11-02&ss=bfqt&srt=sco&sp=rwdlacupiyx&se=2024-06-26T20:08:08Z&st=2024-06-26T12:08:08Z&spr=https,http&sig=DRxJpnzKAKp7snOS2rg5xdEa%2B3ieID1QqHzhXaDvbdU%3D"
 
       - name: Terraform Plan
