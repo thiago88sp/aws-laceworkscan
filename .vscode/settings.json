@@ -1,5 +1,8 @@
 {
     "appService.preDeployTask": "publish-release",
     "appService.deploySubpath": "MyFirstAzureWebApp\\bin\\Release\\net8.0\\publish",
-    "appService.defaultWebAppToDeploy": "/subscriptions/cf72478e-c3b0-4072-8f60-41d037c1d9e9/resourceGroups/demo-app-thiago-pontes/providers/Microsoft.Web/sites/demoapp10000"
+    "appService.defaultWebAppToDeploy": "/subscriptions/cf72478e-c3b0-4072-8f60-41d037c1d9e9/resourceGroups/demo-app-thiago-pontes/providers/Microsoft.Web/sites/demoapp10000",
+    "lacework.accountName": "lwint-fortinet-sa.lacework.net",
+    "lacework.accessKeyID": "LWINTFOR_1A52C9B60645B0C878BBEACB6C0FAC311B9B327F7A313A8",
+    "lacework.secretAccessKey": "_f6f8cde18d02a35b90a7d9e18183fc6b"
 }
